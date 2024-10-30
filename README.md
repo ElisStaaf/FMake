@@ -19,7 +19,7 @@ To install, firstly, clone the git repo:
 git clone https://github.com/ElisStaaf/FMake ~/fmake
 
 # gh
-gh repo clone ElisStaaf/Fmake ~/fmake
+gh repo clone ElisStaaf/FMake ~/fmake
 ```
 Then compile an executable:
 ```bash
