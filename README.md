@@ -8,7 +8,6 @@ stuff and add if-statements.
 
 ## Requirements
 * python3
-* pyinstaller
 * m4
 * git or gh
 
@@ -25,7 +24,7 @@ Then compile an executable:
 ```bash
 make
 ```
-The above compiling is done by pyinstaller, that's why you need it. Then you can unpack the executable,
+Then you can unpack the executable,
 and go on your merry way.
 
 ## Introduction to the FMakefile
