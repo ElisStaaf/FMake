@@ -63,17 +63,5 @@ g++-build main.cpp main
 -- And this is the Go compiler:
 go-build main.go main
 ```
-FMake also includes `print` statements:
-```lua
-print "Hello World!"
-```
-And also `if-statements`:
-```lua
--- This will print "Hello World!":
-if 5+5==10 print "Hello World!"
-
--- This... Won't:
-if 5+5==11 print "Hello World!"
-```
 And that's it for now! Feel free to contribute to the project, help is much appreciated!
 And with that, enjoy!
