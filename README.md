@@ -20,12 +20,7 @@ git clone https://github.com/ElisStaaf/FMake ~/fmake
 # gh
 gh repo clone ElisStaaf/FMake ~/fmake
 ```
-Then compile an executable:
-```bash
-make
-```
-Then you can unpack the executable,
-and go on your merry way.
+Note that you would maybe want to add `~/fmake` to your `PATH`.
 
 ## Introduction to the FMakefile
 The `FMakeFile` is a layer of abstraction, so that you don't have to compile with M4, the FMake compiler

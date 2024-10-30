@@ -68,7 +68,7 @@ def invoke(program: list[str]) -> None:
         # Firstly, we run the m4 interpeter to a tmp.sh file,
         # then we invoke the tmp.sh file and lastly, we delete
         # all of the tmp files using "tmp*"
-        os.system(f"m4 m4/build.m4 tmp.m4 > {os.getcwd()}/tmp.sh")
+        os.system(f"m4 {sys.path[0]}/m4/build.m4 tmp.m4 > {os.getcwd()}/tmp.sh")
         os.system("sh tmp.sh") 
     except:
         print("[ERROR]: Ending compilation...")
