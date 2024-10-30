@@ -1,2 +1,3 @@
 install:
-	pyinstaller src/fmake.py 
+	@chmod +x fmake
+	@cp fmake /usr/bin/fmake

@@ -63,5 +63,8 @@ g++-build main.cpp main
 -- And this is the Go compiler:
 go-build main.go main
 ```
-And that's it for now! Feel free to contribute to the project, help is much appreciated!
-And with that, enjoy!
+You can also invoke the compiler with many different flags, these are all of them (for now):
+```
+-h, --help: Show help message.
+-S: Save all tmp files.
+```
