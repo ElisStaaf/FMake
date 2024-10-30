@@ -3,7 +3,8 @@
 [![Version](https://img.shields.io/badge/Version-1.0.0-38c747?style=for-the-badge)](https://github.com/ElisStaaf/vine)
 [![Lang](https://img.shields.io/badge/Language-Python-385dc7?logo=python&style=for-the-badge)](https://github.com/ElisStaaf/vine)  
 FMake is build software focused on working. Unlike other build software this one doesn't work half of the
-time. It also (right now at least) doesn't include anything special. You can only just... Build stuff.
+time. It also (right now at least) doesn't include anything special. You can only... Build stuff, print
+stuff and add if-statements.
 
 ## Requirements
 * python3
@@ -61,6 +62,18 @@ g++-build main.cpp main
 
 -- And this is the Go compiler:
 go-build main.go main
+```
+FMake also includes `print` statements:
+```
+print "Hello World!"
+```
+And also `if-statements`:
+```
+-- This will print "Hello World!":
+if 5+5==10 print "Hello World!"
+
+-- This... Won't:
+if 5+5==11 print "Hello World!"
 ```
 And that's it for now! Feel free to contribute to the project, help is much appreciated!
 And with that, enjoy!

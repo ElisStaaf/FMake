@@ -35,8 +35,14 @@ class Fmake:
                 self.program.append("_rust_build(`%s', `%s')" % nodelist[2], nodelist[1])
             elif startnode == "g++-build":
                 self.program.append("_gpp_build(`%s', `%s')" % nodelist[2], nodelist[1])
+            elif startnode == "if":
+                self.program.append("_if(`%s', `%s')" % nodelist[1], nodelist[2])
+            elif startnode == "print":
+                self.program.append("_print(`%s')" % nodelist[1])
             elif startnode.startswith("--") or startnode.strip() == "":
                 continue
+            else:
+                print("[ERROR]: Invalid syntax")
 
 def main() -> None:
     if "FMakefile".lower() in os.listdir():

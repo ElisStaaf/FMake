@@ -12,5 +12,13 @@ define(
 )
 define(
 `_gpp_build',
-`g++ -o $1 $1'
+`g++ -o $2 $1'
+)
+define(
+`_print',
+`echo "$1"'
+)
+define(
+`_if'
+`if [$1]; then $2;fi'
 )
