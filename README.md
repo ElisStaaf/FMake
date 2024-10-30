@@ -1,7 +1,7 @@
 # FMake: Build software for idiots
 [![Build](https://img.shields.io/badge/Build%20(Fedora)-passing-2a7fd5?logo=fedora&logoColor=2a7fd5&style=for-the-badge)](https://github.com/ElisStaaf/vine)
 [![Version](https://img.shields.io/badge/Version-1.0.0-38c747?style=for-the-badge)](https://github.com/ElisStaaf/vine)
-[![Lang](https://img.shields.io/badge/Language-Python-2d6cd2?logo=python&style=for-the-badge)](https://github.com/ElisStaaf/vine)  
+[![Lang](https://img.shields.io/badge/Language-Python-385dc7?logo=python&style=for-the-badge)](https://github.com/ElisStaaf/vine)  
 FMake is build software focused on working. Unlike other build software this one doesn't work half of the
 time. It also (right now at least) doesn't include anything special. You can only just... Build stuff.
 
