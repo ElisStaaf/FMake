@@ -32,7 +32,7 @@ and go on your merry way.
 The `FMakeFile` is a layer of abstraction, so that you don't have to compile with M4, the FMake compiler
 does that for you. Say you have a project with a file called `main.rs`, you can create an `FMakefile`
 and write this into it:
-```
+```lua
 rust-build main.rs main
 ```
 I'm not going to go *too* far into the low level interface of M4, but this is how your code expands
@@ -45,12 +45,12 @@ And *that* expands to *this* in shell language:
 rustc -o main main.rs
 ```
 Comments in FMake start with `--`:
-```
+```lua
 -- This is a comment, and it is awesome!
 rust-build main.rs main
 ```
 There are other compilers you can use in FMake, here's a showcase:
-```
+```lua
 -- This is the rust compiler, the one I showed earlier:
 rust-build main.rs main
 
@@ -64,11 +64,11 @@ g++-build main.cpp main
 go-build main.go main
 ```
 FMake also includes `print` statements:
-```
+```lua
 print "Hello World!"
 ```
 And also `if-statements`:
-```
+```lua
 -- This will print "Hello World!":
 if 5+5==10 print "Hello World!"
 
