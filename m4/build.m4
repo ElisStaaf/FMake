@@ -14,3 +14,7 @@ define(
 `_gpp_build',
 `g++ -o $2 $1'
 )
+define(
+`_println',
+`echo $1'
+)

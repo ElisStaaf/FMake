@@ -32,6 +32,9 @@ class Fmake:
     def cwd_node(self, index) -> str:
         return f"{os.getcwd()}/{self.nodelist[index]}"
 
+    def cmdn(self) -> str:
+        return " ".join(self.nodelist[1:])
+
     def eval_expr(self) -> None:
         for line in self.lines:
             # We use .rstrip() here because otherwise the list has the weird
@@ -46,6 +49,8 @@ class Fmake:
                 self.program.append(f"_rust_build(`{self.cwd_node(1)}', `{self.cwd_node(2)}')")
             elif startnode == "g++-build":
                 self.program.append(f"_gpp_build(`{self.cwd_node(1)}', `{self.cwd_node(2)}')")
+            elif startnode == "println":
+                self.program.append(f"_println(`{self.cmdn()}')")
             elif startnode.startswith("--") or startnode.strip() == "":
                 continue
             else:

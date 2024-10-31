@@ -57,6 +57,10 @@ g++-build main.cpp main
 -- And this is the Go compiler:
 go-build main.go main
 ```
+`print` statements also exist:
+```lua
+println "Hello World!"
+```
 You can also invoke the compiler with many different flags, these are all of them (for now):
 ```
 -h, --help: Show help message.
