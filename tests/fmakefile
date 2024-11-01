@@ -1,3 +1,2 @@
-if "Hello!" == "Hello!"
-go-build main.go main.out
-endif
+set msg "Hello World!"
+println "$msg"

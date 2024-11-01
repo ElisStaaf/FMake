@@ -11,6 +11,10 @@ define(
 `fi'
 )
 define(
+`_set',
+`$1=$2'
+)
+define(
 `_gcc_build',
 `gcc -o $2 $1'
 )

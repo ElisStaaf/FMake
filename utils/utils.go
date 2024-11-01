@@ -96,8 +96,12 @@ func (fmake *FMakeObject) Nodes(start int, end int) []string {
     return fmake.nodelist[start:end]
 }
 
-func (fmake *FMakeObject) Cmdn() []string {
-    return []string{strings.Join(fmake.nodelist[1:], " ")}
+func (fmake *FMakeObject) Cmdn(start int) []string {
+    return []string{strings.Join(fmake.nodelist[start:], " ")}
+}
+
+func (fmake *FMakeObject) Cmdd(name string, value []string) []string {
+    return []string{name, strings.Join(value, " ")}
 }
 
 func (fmake *FMakeObject) Compile() {
@@ -119,11 +123,13 @@ func (fmake *FMakeObject) Compile() {
 
         switch startnode {
             case "if":
-                fmake.AddRule("_if", fmake.Cmdn())
+                fmake.AddRule("_if", fmake.Cmdn(1))
                 fmake.inif = true
             case "endif":
                 fmake.inif = false
                 fmake.AddRule("_endif", nil)
+            case "set":
+                fmake.AddRule("_set", fmake.Cmdd(fmake.nodelist[1], fmake.Cmdn(2)))
             case "gcc-build":
                 fmake.AddRule("_gcc_build", fmake.Nodes(1, 2))
             case "rust-build":
@@ -133,7 +139,7 @@ func (fmake *FMakeObject) Compile() {
             case "g++-build":
                 fmake.AddRule("_gpp_build", fmake.Nodes(1, 2))
             case "println":
-                fmake.AddRule("_println", fmake.Cmdn())
+                fmake.AddRule("_println", fmake.Cmdn(1))
             default:
                 Die("[ERROR]: FMakefile syntax error.")
         }
