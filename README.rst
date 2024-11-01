@@ -3,7 +3,7 @@ FMake: Build software for idiots
 .. image:: https://img.shields.io/badge/Build%20(Fedora)-passing-2a7fd5?logo=fedora&logoColor=2a7fd5&style=for-the-badge
    :alt: Build = Passing
    :target: https://github.com/ElisStaaf/FMake
-.. image:: https://img.shields.io/badge/Version-1.1.0-38c747?style=for-the-badge
+.. image:: https://img.shields.io/badge/Version-NET/1-38c747?style=for-the-badge
    :alt: Version = 1.0.0
    :target: https://github.com/ElisStaaf/FMake
 .. image:: https://img.shields.io/badge/Language-Go-19cbe6?logo=go&style=for-the-badge
