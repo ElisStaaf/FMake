@@ -16,7 +16,8 @@ stuff and add if-statements.
 
 Requirements
 ------------
-* `python3`_
+* `go`_
+* `make`_
 * `m4`_
 * `git`_ or `gh`_
 
@@ -32,7 +33,11 @@ To install, firstly, clone the git repo:
   # gh
   gh repo clone ElisStaaf/FMake ~/fmake
 
-Note that you would maybe want to add ``~/fmake`` to your ``PATH``.
+Then, you would build an executable using ``make``:
+
+.. code:: bash
+
+   sudo make install
 
 Introduction to the FMakefile
 -----------------------------
@@ -92,8 +97,8 @@ You can also invoke the compiler with many different flags, these are all of the
    -h, --help: Show help message.
    -S: Save all tmp files.
 
-
-.. _`python3`: https://www.python.org/downloads
+.. _`go`: https://go.dev/doc/install
+.. _`make`: https://www.gnu.org/software/make
 .. _`m4`: https://www.linuxfromscratch.org/museum/lfs-museum/2.3.7/LFS-BOOK-2.3.7-HTML/x2018.html
 .. _`git`: https://git-scm.com/downloads
 .. _`gh`: https://github.com/cli/cli#installation
