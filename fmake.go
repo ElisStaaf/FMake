@@ -9,8 +9,7 @@ import (
 
 var version string = "NET/1"
 var usage = `
-usage: fmake [-S] [-h, --help]
-       [-v, --version]
+usage: fmake [-S] [-h, --help] [-v, --version]
 flags:
     -h, --help: Show this help screen.
     -v, --version: Print version number.
