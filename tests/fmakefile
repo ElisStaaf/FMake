@@ -1,1 +1,3 @@
-go-build main.go main
+if "Hello!" == "Hello!"
+go-build main.go main.out
+endif

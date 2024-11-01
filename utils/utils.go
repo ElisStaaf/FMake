@@ -78,7 +78,18 @@ type FMakeObject struct {
 /* This is a low level interface, refer to FMakeObject.AddRule() for 
  * a more high level interface (I will assume you're looking for that) */
 func (fmake *FMakeObject) BuildRule(name string, params []string) string {
+    if len(params) == 0 {
+        return name + "()"
+    }
     return strings.Join([]string{name, "(`", strings.Join(params, "', `"), "')"}, "")
+}
+
+func (fmake *FMakeObject) AddRule(name string, params []string) {
+    if fmake.inif {
+        fmake.body = append(fmake.body, "_indent()   " + fmake.BuildRule(name, params))
+        return
+    }
+    fmake.body = append(fmake.body, fmake.BuildRule(name, params))
 }
 
 func (fmake *FMakeObject) Nodes(start int, end int) []string {
@@ -87,10 +98,6 @@ func (fmake *FMakeObject) Nodes(start int, end int) []string {
 
 func (fmake *FMakeObject) Cmdn() []string {
     return []string{strings.Join(fmake.nodelist[1:], " ")}
-}
-
-func (fmake *FMakeObject) AddRule(name string, params []string) {
-    fmake.body = append(fmake.body, fmake.BuildRule(name, params))
 }
 
 func (fmake *FMakeObject) Compile() {
@@ -106,11 +113,17 @@ func (fmake *FMakeObject) Compile() {
         fmake.nodelist = strings.Split(line, " ")
         var startnode string = fmake.nodelist[0]
 
-        if strings.HasPrefix(startnode, "--") {
+        if strings.HasPrefix(startnode, "--") || len(strings.TrimSpace(startnode)) == 0 {
             continue
         }
 
         switch startnode {
+            case "if":
+                fmake.AddRule("_if", fmake.Cmdn())
+                fmake.inif = true
+            case "endif":
+                fmake.inif = false
+                fmake.AddRule("_endif", nil)
             case "gcc-build":
                 fmake.AddRule("_gcc_build", fmake.Nodes(1, 2))
             case "rust-build":
@@ -121,8 +134,6 @@ func (fmake *FMakeObject) Compile() {
                 fmake.AddRule("_gpp_build", fmake.Nodes(1, 2))
             case "println":
                 fmake.AddRule("_println", fmake.Cmdn())
-            case "if":
-                fmake.AddRule("_if", fmake.Cmdn())
             default:
                 Die("[ERROR]: FMakefile syntax error.")
         }

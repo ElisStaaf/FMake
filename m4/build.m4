@@ -1,4 +1,16 @@
 define(
+`_indent',
+`'
+)
+define(
+`_if',
+`if [ $1 ]; then'
+)
+define(
+`_endif',
+`fi'
+)
+define(
 `_gcc_build',
 `gcc -o $2 $1'
 )
