@@ -99,6 +99,7 @@ You can also invoke the compiler with many different flags, these are all of the
 ::
 
    -h, --help: Show help message.
+   -v, --version: Print version name.
    -S: Save all tmp files.
 
 .. _`go`: https://go.dev/doc/install
