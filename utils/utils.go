@@ -45,20 +45,15 @@ func WriteLines(path string, lines []string) (error) {
 
 /*** Misc ***/
 
-/* We need this PackagePath()
+/* We need this packagePath()
  * function to call the m4 files. */
-func PackagePath() string {
+func packagePath() string {
     _, b, _, _ := runtime.Caller(0)
     basepath := filepath.Dir(b)
     splitpath := strings.Split(basepath, "/")
     path := strings.Join(splitpath[:len(splitpath)-1], "/")
 
     return path
-}
-
-/* This is just because I'm lazy. */
-func M4Rule(name string, params []string) string {
-    return strings.Join([]string{name, "(`", strings.Join(params, "', `"), "')"}, "")
 }
 
 func Note(msg string) {
@@ -76,38 +71,71 @@ func Die(msg string) {
 type FMakeObject struct {
     Name string;
     body []string;
+    nodelist []string;
+    inif bool;
+}
+
+/* This is a low level interface, refer to FMakeObject.AddRule() for 
+ * a more high level interface (I will assume you're looking for that) */
+func (fmake *FMakeObject) BuildRule(name string, params []string) string {
+    return strings.Join([]string{name, "(`", strings.Join(params, "', `"), "')"}, "")
+}
+
+func (fmake *FMakeObject) Nodes(start int, end int) []string {
+    return fmake.nodelist[start:end]
+}
+
+func (fmake *FMakeObject) Cmdn() []string {
+    return []string{strings.Join(fmake.nodelist[1:], " ")}
+}
+
+func (fmake *FMakeObject) AddRule(name string, params []string) {
+    fmake.body = append(fmake.body, fmake.BuildRule(name, params))
 }
 
 func (fmake *FMakeObject) Compile() {
     lines, err := ReadLines(fmake.Name)
+
     if err != nil {
         Die("[ERROR]: Couldn't read FMakefile.")
     }
+
     for i := 0; i < len(lines); i++ {
+
         var line string = lines[i]
-        var nodelist []string = strings.Split(line, " ")
-        var startnode string = nodelist[0]
-        if startnode == "gcc-build" {
-            fmake.body = append(fmake.body, M4Rule("_gcc_build", []string{nodelist[1], nodelist[2]}))
-        } else if startnode == "rust-build" {
-            fmake.body = append(fmake.body, M4Rule("_rust_build", []string{nodelist[1], nodelist[2]}))
-        } else if startnode == "go-build" {
-            fmake.body = append(fmake.body, M4Rule("_go_build", []string{nodelist[1], nodelist[2]}))
-        } else if startnode == "g++-build" {
-            fmake.body = append(fmake.body, M4Rule("_gpp_build", []string{nodelist[1], nodelist[2]}))
-        } else if startnode == "println" {
-            fmake.body = append(fmake.body, M4Rule("_println", []string{strings.Join(nodelist[1:], " ")}))
-        } else if strings.HasPrefix(startnode, "--") {
+        fmake.nodelist = strings.Split(line, " ")
+        var startnode string = fmake.nodelist[0]
+
+        if strings.HasPrefix(startnode, "--") {
             continue
-        } else {
-            Die("[ERROR]: FMakefile syntax error.")
         }
-        WriteLines("tmp.m4", fmake.body)
-        out, err := exec.Command("m4", PackagePath() + "/m4/build.m4", "tmp.m4").Output()
-        if err != nil {
-            Die("[ERROR]: M4 compilation failed.")
+
+        switch startnode {
+            case "gcc-build":
+                fmake.AddRule("_gcc_build", fmake.Nodes(1, 2))
+            case "rust-build":
+                fmake.AddRule("_rust_build", fmake.Nodes(1, 2))
+            case "go-build":
+                fmake.AddRule("_go_build", fmake.Nodes(1, 2))
+            case "g++-build":
+                fmake.AddRule("_gpp_build", fmake.Nodes(1, 2))
+            case "println":
+                fmake.AddRule("_println", fmake.Cmdn())
+            case "if":
+                fmake.AddRule("_if", fmake.Cmdn())
+            default:
+                Die("[ERROR]: FMakefile syntax error.")
         }
-        WriteLines("tmp.sh", strings.Split(string(out), "\n"))
-        exec.Command("sh", "tmp.sh").Run()
+
     }
+}
+
+func (fmake *FMakeObject) Run() {
+    WriteLines("tmp.m4", fmake.body)
+    out, err := exec.Command("m4", packagePath() + "/m4/build.m4", "tmp.m4").Output()
+    if err != nil {
+        Die("[ERROR]: M4 compilation failed.")
+    }
+    WriteLines("tmp.sh", strings.Split(string(out), "\n"))
+    exec.Command("sh", "tmp.sh").Run()
 }

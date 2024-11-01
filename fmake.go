@@ -32,6 +32,7 @@ func main() {
     }
     if len(os.Args) == 1 {
         fmake.Compile()
+        fmake.Run()
         os.Remove("tmp.sh")
         os.Remove("tmp.m4")
         utils.Note("[INFO]: FMake compilation succeded. All tests pass!")
@@ -41,6 +42,7 @@ func main() {
         log.Fatal(usage)
     } else if os.Args[1] == "-S" {
         fmake.Compile()
+        fmake.Run()
         utils.Note("[INFO]: FMake compilation succeded. All tests pass!")
         os.Exit(0)
     }
