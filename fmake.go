@@ -2,34 +2,41 @@ package main
 
 import (
 	"fmake/utils"
+	"fmt"
 	"os"
 	"strings"
-    "log"
 )
 
+var version string = "NET/1"
 var usage = `
 usage: fmake [-S] [-h, --help]
+       [-v, --version]
 flags:
     -h, --help: Show this help screen.
+    -v, --version: Print version number.
     -S: Save all tmp files.
 `
 
 func main() {
     var fmake utils.FMakeObject 
     cwd, err := os.ReadDir("./")
+
     if err != nil {
         utils.Die("[ERROR]: Error getting files in current working directory.")
         os.Exit(1)
     }
+
     for _, file := range cwd {
         if strings.ToLower(file.Name()) == "fmakefile" {
             fmake.Name = file.Name()
         }
     }
+
     if len(fmake.Name) == 0 {
         utils.Die("[ERROR]: Couldn't find an FMakefile in current directory.")
         os.Exit(1)
     }
+
     if len(os.Args) == 1 {
         fmake.Compile()
         fmake.Run()
@@ -38,12 +45,16 @@ func main() {
         utils.Note("[INFO]: FMake compilation succeded. All tests pass!")
         os.Exit(0)
     }
-    if os.Args[1] == "--help" || os.Args[1] == "-h" {
-        log.Fatal(usage)
-    } else if os.Args[1] == "-S" {
-        fmake.Compile()
-        fmake.Run()
-        utils.Note("[INFO]: FMake compilation succeded. All tests pass!")
-        os.Exit(0)
+
+    switch os.Args[1] {
+        case "--help", "-h":
+            fmt.Println(usage)
+        case "--version", "-v":
+            fmt.Println("FMake", version, os.Getenv("HOSTTYPE"))
+        case "-S":
+            fmake.Compile()
+            fmake.Run()
+            utils.Note("[INFO]: FMake compilation succeded. All tests pass!")
+            os.Exit(0)
     }
 }
