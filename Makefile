@@ -3,6 +3,8 @@
 SRC="fmake.go"
 BIN="/usr/bin/fmake"
 
+all: install
+
 install:
 	go build -o ${BIN} ${SRC}
 
