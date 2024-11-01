@@ -11,8 +11,8 @@ FMake: Build software for idiots
    :target: https://github.com/ElisStaaf/FMake
 
 FMake is build software focused on working. Unlike other build software this one doesn't work half of the
-time. It also (right now at least) doesn't include anything special. You can only... Build stuff, print
-stuff and add if-statements.
+time. It also (right now at least) doesn't include anything special. You can only... Build stuff and print
+stuff.
 
 Requirements
 ------------
