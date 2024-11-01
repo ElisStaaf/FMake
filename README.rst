@@ -94,6 +94,14 @@ There are other compilers you can use in FMake, here's a showcase:
 
    println "Hello World!"
 
+And everyone's favourite; ``if-statements``:
+
+.. code:: lua
+
+   if "print('Hello World!')" == $(cat main.py)
+   rust-build main.rs main
+   endif
+
 You can also invoke the compiler with many different flags, these are all of them (for now):
 
 ::
