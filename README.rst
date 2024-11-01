@@ -96,7 +96,7 @@ There are other compilers you can use in FMake, here's a showcase:
 
 And everyone's favourite; ``if-statements``:
 
-.. code:: lua
+.. code:: vim
 
    if "print('Hello World!')" == $(cat main.py)
    rust-build main.rs main
