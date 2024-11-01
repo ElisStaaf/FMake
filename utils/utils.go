@@ -2,12 +2,13 @@ package utils
 
 import (
 	"bufio"
-	"fmt"
 	"os"
     "strings"
     "os/exec"
     "path/filepath"
     "runtime"
+
+    "github.com/fatih/color"
 )
 
 /*** File I/O ***/
@@ -60,6 +61,16 @@ func M4Rule(name string, params []string) string {
     return strings.Join([]string{name, "(`", strings.Join(params, "', `"), "')"}, "")
 }
 
+func Note(msg string) {
+    color.RGB(0, 255, 0).Println(msg)
+    os.Exit(0)
+}
+
+func Die(msg string) {
+    color.RGB(255, 0, 0).Println(msg)
+    os.Exit(0)
+}
+
 /*** FMakeObject ***/
 
 type FMakeObject struct {
@@ -70,8 +81,7 @@ type FMakeObject struct {
 func (fmake *FMakeObject) Compile() {
     lines, err := ReadLines(fmake.Name)
     if err != nil {
-        fmt.Println("[ERROR]: Couldn't read FMakefile.")
-        os.Exit(1)
+        Die("[ERROR]: Couldn't read FMakefile.")
     }
     for i := 0; i < len(lines); i++ {
         var line string = lines[i]
@@ -90,14 +100,12 @@ func (fmake *FMakeObject) Compile() {
         } else if strings.HasPrefix(startnode, "--") {
             continue
         } else {
-            fmt.Println("[ERROR]: FMakefile syntax error.")
-            os.Exit(1)
+            Die("[ERROR]: FMakefile syntax error.")
         }
         WriteLines("tmp.m4", fmake.body)
         out, err := exec.Command("m4", PackagePath() + "/m4/build.m4", "tmp.m4").Output()
         if err != nil {
-            fmt.Println("[ERROR]: M4 compilation failed.")
-            os.Exit(1)
+            Die("[ERROR]: M4 compilation failed.")
         }
         WriteLines("tmp.sh", strings.Split(string(out), "\n"))
         exec.Command("sh", "tmp.sh").Run()
