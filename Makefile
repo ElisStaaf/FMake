@@ -1,2 +1,11 @@
+.PHONY: install remove
+
+SRC="fmake.go"
+BIN="/usr/bin/fmake"
+
 install:
-	@go build -o /usr/bin/fmake fmake.go
+	go build -o ${BIN} ${SRC}
+
+remove:
+	go clean
+	rm ${BIN}
