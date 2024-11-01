@@ -17,7 +17,7 @@ stuff.
 Requirements
 ------------
 * `go`_
-* `make`_
+* `make`_ or `docker`_
 * `m4`_
 * `git`_ or `gh`_
 
@@ -104,6 +104,7 @@ You can also invoke the compiler with many different flags, these are all of the
 
 .. _`go`: https://go.dev/doc/install
 .. _`make`: https://www.gnu.org/software/make
+.. _`docker`: https://docs.docker.com/engine/install/
 .. _`m4`: https://www.linuxfromscratch.org/museum/lfs-museum/2.3.7/LFS-BOOK-2.3.7-HTML/x2018.html
 .. _`git`: https://git-scm.com/downloads
 .. _`gh`: https://github.com/cli/cli#installation
