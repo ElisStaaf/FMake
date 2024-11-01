@@ -86,7 +86,6 @@ func (fmake *FMakeObject) Compile() {
         }
         WriteLines("tmp.m4", fmake.body)
         out, err := exec.Command("m4", PackagePath() + "/m4/build.m4", "tmp.m4").Output()
-        fmt.Println(out)
         if err != nil {
             fmt.Println("[ERROR]: M4 compilation failed.")
             os.Exit(1)

@@ -8,7 +8,6 @@ import (
 )
 
 func main() {
-    fmt.Println(utils.PackagePath())
     var fmake utils.FMakeObject
     cwd, err := os.ReadDir("./")
     if err != nil {
