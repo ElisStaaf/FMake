@@ -1,2 +1,2 @@
 install:
-	go build -o /usr/bin/fmake fmake.go
+	@go build -o /usr/bin/fmake fmake.go
