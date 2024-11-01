@@ -32,6 +32,18 @@ func main() {
         }
     }
 
+    /* Pre compile-time flags. */
+    if len(os.Args) >= 2 {
+        switch os.Args[1] {
+            case "--help", "-h":
+                fmt.Println(usage)
+                os.Exit(0)
+            case "--version", "-v":
+                fmt.Println("FMake", version, os.Getenv("HOSTTYPE"))
+                os.Exit(0)
+        }
+    }
+
     if len(fmake.Name) == 0 {
         utils.Die("[ERROR]: Couldn't find an FMakefile in current directory.")
         os.Exit(1)
@@ -46,15 +58,15 @@ func main() {
         os.Exit(0)
     }
 
+    /* Compile-time flags. */
     switch os.Args[1] {
-        case "--help", "-h":
-            fmt.Println(usage)
-        case "--version", "-v":
-            fmt.Println("FMake", version, os.Getenv("HOSTTYPE"))
         case "-S":
             fmake.Compile()
             fmake.Run()
             utils.Note("[INFO]: FMake compilation succeded. All tests pass!")
             os.Exit(0)
+        default:
+            utils.Die("[ERROR]: Invalid flag")
+            os.Exit(1)
     }
 }
