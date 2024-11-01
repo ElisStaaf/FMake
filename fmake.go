@@ -7,8 +7,15 @@ import (
 	"strings"
 )
 
+var usage = `
+usage: fmake [-S] [-h, --help]
+flags:
+    -h, --help: Show this help screen.
+    -S: Save all tmp files.
+`
+
 func main() {
-    var fmake utils.FMakeObject
+    var fmake utils.FMakeObject 
     cwd, err := os.ReadDir("./")
     if err != nil {
         fmt.Println("[ERROR]: Error getting files in current working directory.")
@@ -30,10 +37,7 @@ func main() {
         os.Exit(0)
     }
     if os.Args[1] == "--help" || os.Args[1] == "-h" {
-        fmt.Println("usage: fmake [-S] [-h, --help]")
-        fmt.Println("flags:")
-        fmt.Println("    -h, --help: Show this help screen.")
-        fmt.Println("    -S: Save all tmp files.")
+        fmt.Println(usage)
         os.Exit(0)
     } else if os.Args[1] == "-S" {
         fmake.Compile()

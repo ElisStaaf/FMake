@@ -10,6 +10,8 @@ import (
     "runtime"
 )
 
+/*** File I/O ***/
+
 func ReadLines(path string) ([]string, error) {
     file, err := os.Open(path)
     if err != nil {
@@ -40,6 +42,10 @@ func WriteLines(path string, lines []string) (error) {
     return nil
 }
 
+/*** Misc ***/
+
+/* We need this PackagePath()
+ * function to call the m4 files. */
 func PackagePath() string {
     _, b, _, _ := runtime.Caller(0)
     basepath := filepath.Dir(b)
@@ -49,13 +55,16 @@ func PackagePath() string {
     return path
 }
 
+/* This is just because I'm lazy. */
+func M4Rule(name string, params []string) string {
+    return strings.Join([]string{name, "(`", strings.Join(params, "', `"), "')"}, "")
+}
+
+/*** FMakeObject ***/
+
 type FMakeObject struct {
     Name string;
     body []string;
-}
-
-func M4Rule(name string, params []string) string {
-    return strings.Join([]string{name, "(`", strings.Join(params, "', `"), "')"}, "")
 }
 
 func (fmake *FMakeObject) Compile() {
@@ -77,7 +86,7 @@ func (fmake *FMakeObject) Compile() {
         } else if startnode == "g++-build" {
             fmake.body = append(fmake.body, M4Rule("_gpp_build", []string{nodelist[1], nodelist[2]}))
         } else if startnode == "println" {
-            fmake.body = append(fmake.body, M4Rule("_println", nodelist[1:]))
+            fmake.body = append(fmake.body, M4Rule("_println", []string{strings.Join(nodelist[1:], " ")}))
         } else if strings.HasPrefix(startnode, "--") {
             continue
         } else {
