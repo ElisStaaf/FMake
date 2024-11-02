@@ -93,7 +93,7 @@ func (fmake *FMakeObject) AddRule(name string, params []string) {
 }
 
 func (fmake *FMakeObject) Nodes(start int, end int) []string {
-    return fmake.nodelist[start:end]
+    return fmake.nodelist[start:end+1]
 }
 
 func (fmake *FMakeObject) Cmdn(start int) []string {
