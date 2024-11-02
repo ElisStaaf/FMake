@@ -55,7 +55,7 @@ the FMake compiler does that for you. To start a new FMake project; you can run:
 This will generate an initial FMakefile, it looks like this:
 
 .. code:: lua
-   
+   require "NET/1"
    set PAKG_VERSION "1.0.0"
    set PAKG_NAME <basepath>
    println "$PAKG_NAME -- version $PAKG_VERSION"
@@ -124,6 +124,14 @@ There are other compilers you can use in FMake, here's a showcase:
 .. code:: lua
 
    println "Hello World!"
+
+You can also...
+
+Check for a minimum required version with ``require``:
+
+.. code:: lua
+
+   require "NET/1"
 
 Set variables with ``set``:
 
