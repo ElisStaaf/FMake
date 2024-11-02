@@ -5,12 +5,10 @@ I got tired of redoing my test enviroment all of the time.
 
 Instructions
 ------------
-You can modify this test directory *almost* completely freely.
-Just make sure you don't delete some other test. Just make sure
-that the application prints:
+To build, run the ``gentest.sh`` script:
 
-::
+.. code:: sh
 
-   [INFO]: FMake compilation succeded. All tests pass!
+   ./gentest.sh <dir> <files> ...
 
-Yeah, so enjoy the test eviroment, I guess..?
+Yeah, enjoy the test enviroment!

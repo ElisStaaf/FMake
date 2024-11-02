@@ -1,8 +1,0 @@
-SET BOOL false
-IF BOOL == true
-PRINTLN "BOOL -eq true"
-ELSEIF BOOL == false
-PRINTLN "BOOL -eq false"
-ELSE
-PRINTLN "BOOL -eq nil"
-ENDIF
