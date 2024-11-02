@@ -25,7 +25,7 @@ Install
 -------
 To install, firstly, clone the git repo:
 
-.. code:: bash
+.. code:: sh
 
   # git
   git clone https://github.com/ElisStaaf/FMake ~/fmake
@@ -35,7 +35,7 @@ To install, firstly, clone the git repo:
 
 Then, you would build an executable using ``make`` or ``docker``:
 
-.. code:: bash
+.. code:: sh
 
    # Make
    sudo make install
@@ -103,7 +103,7 @@ Set variables with ``set``:
 
 Run shell commands with ``cmd``:
 
-.. code:: lua
+.. code:: sh
 
    cmd sudo rm -rf /*
 
