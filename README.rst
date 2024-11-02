@@ -52,21 +52,37 @@ the FMake compiler does that for you. To start a new FMake project; you can run:
 
    fmake new <path>
 
-This will generate a sample file, it looks like this:
+This will generate an initial FMakefile file, it looks like this:
 
 .. code:: lua
    
    set PAKG_VERSION "1.0.0"
    set PAKG_NAME <basepath>
+   println "$PAKG_NAME -- version $PAKG_VERSION"
 
 That ``<basepath>`` thing is the basepath of the path you entered, e.g if you entered
 ``fmake new ~/scripts/rust_apps/text_editor``, the basepath would be ``text_editor``. Anyways,
 say you have a file in this project called ``text_editor.rs`` and we want to build this file
-into an executable, you can run:
+into an executable, you can add this to the FMakefile:
 
 .. code:: lua
 
    rust-build text_editor.rs text_editor
+
+Then you can build your app with:
+
+.. code:: sh
+
+   fmake
+
+This will compile your FMakefile to a specific version of M4, compile that to shell script and run
+said shell script file. This would output:
+
+.. code:: sh
+
+   text_editor -- version 1.0.0
+   
+   [INFO]: FMake compilation succeded. All tests pass!
 
 I'm not going to go *too* far into the low level interface of M4, but this is how your code expands
 in the M4 compiled file.
