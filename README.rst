@@ -55,6 +55,7 @@ the FMake compiler does that for you. To start a new FMake project; you can run:
 This will generate an initial FMakefile, it looks like this:
 
 .. code:: lua
+
    require "NET/1"
    set PAKG_VERSION "1.0.0"
    set PAKG_NAME <basepath>
