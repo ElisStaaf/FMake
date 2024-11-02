@@ -126,6 +126,10 @@ func (fmake *FMakeObject) Compile() {
             case "if":
                 fmake.AddRule("_if", fmake.Cmdn(1))
                 fmake.inif = true
+            case "elseif":
+                fmake.inif = false
+                fmake.AddRule("_elseif", fmake.Cmdn(1))
+                fmake.inif = true
             case "else":
                 fmake.inif = false
                 fmake.AddRule("_else", nil)
