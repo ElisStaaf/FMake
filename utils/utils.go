@@ -122,9 +122,13 @@ func (fmake *FMakeObject) Compile() {
             continue
         }
 
-        switch startnode {
+        switch strings.ToLower(startnode) {
             case "if":
                 fmake.AddRule("_if", fmake.Cmdn(1))
+                fmake.inif = true
+            case "else":
+                fmake.inif = false
+                fmake.AddRule("_else", nil)
                 fmake.inif = true
             case "endif":
                 fmake.inif = false

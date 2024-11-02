@@ -7,6 +7,10 @@ define(
 `if [ $1 ]; then'
 )
 define(
+`_else',
+`else'
+)
+define(
 `_endif',
 `fi'
 )

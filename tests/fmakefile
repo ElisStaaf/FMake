@@ -1,3 +1,6 @@
-set msg "Hello World!"
-println "$msg"
-cmd echo "bird is the word" > "bird.txt"
+SET BOOL false
+IF BOOL == true
+PRINTLN "BOOL -eq true"
+ELSE
+PRINTLN "BOOL -eq false"
+ENDIF
