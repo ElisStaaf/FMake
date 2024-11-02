@@ -132,7 +132,7 @@ Check for a minimum required version with ``require``:
 
 .. code:: lua
 
-   require "NET/1"
+   require NET/1
 
 Set variables with ``set``:
 
