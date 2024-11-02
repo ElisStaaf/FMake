@@ -52,7 +52,7 @@ the FMake compiler does that for you. To start a new FMake project; you can run:
 
    fmake new <path>
 
-This will generate an initial FMakefile file, it looks like this:
+This will generate an initial FMakefile, it looks like this:
 
 .. code:: lua
    
