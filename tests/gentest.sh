@@ -1,17 +1,22 @@
 #!/bin/sh
 
-function print () {
-    echo -e "\e[$1;0m$2"
-}
-
 WORKDIR=$1
+
+if [ -d $WORKDIR ]; then
+    exit "[ERROR]: Directory \"$WORKDIR\" already exists!"
+fi
+
 mkdir "$WORKDIR"
 
-print "33" "[INFO]: Generating $WORKDIR/FMakefile"
-print "33" "-- FMakefile [$HOSTTYPE]" >> "$WORKDIR/FMakefile"
+echo "[INFO]: Generating $WORKDIR/FMakefile"
+echo "-- FMakefile [$HOSTTYPE]" >> "$WORKDIR/FMakefile"
 
-for param in ${@[@]:1}; do
-    print "33" "[INFO]: Generating $WORKDIR/$param..."
+for param in $@; do
+    if [ $param == $1 ]; then
+        continue
+    fi
+    echo "[INFO]: Generating $WORKDIR/$param..."
     touch "$WORKDIR/$param"
+done
 
-print "32" "[INFO]: Test generation was a success!"
+echo "[INFO]: Test generation was a success!"
