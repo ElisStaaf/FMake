@@ -107,12 +107,14 @@ Run shell commands with ``cmd``:
 
    cmd sudo rm -rf /*
 
-And everyone's favourite; ``if-statements``:
+And everyone's favourite; ``if-else-statements``:
 
 .. code:: vim
 
    if "print('Hello World!')" == $(cat main.py)
    rust-build main.rs main
+   else
+   println "expression evaluated to false.\nwill not build file."
    endif
 
 You can also invoke the compiler with many different flags, these are all of them (for now):
