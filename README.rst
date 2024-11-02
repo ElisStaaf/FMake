@@ -48,7 +48,7 @@ Introduction to the FMakefile
 The ``FMakeFile`` is a layer of abstraction, so that you don't have to compile with M4,
 the FMake compiler does that for you. To start a new FMake project; you can run:
 
-.. code:: sh
+.. code:: lua
 
    fmake new <path>
 
