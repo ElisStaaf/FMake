@@ -45,26 +45,41 @@ Then, you would build an executable using ``make`` or ``docker``:
 
 Introduction to the FMakefile
 -----------------------------
-The ``FMakeFile`` is a layer of abstraction, so that you don't have to compile with M4, the FMake compiler
-does that for you. Say you have a project with a file called ``main.rs``, you can create an ``FMakefile``
-and write this into it:
+The ``FMakeFile`` is a layer of abstraction, so that you don't have to compile with M4,
+the FMake compiler does that for you. To start a new FMake project; you can run:
+
+.. code:: sh
+
+   fmake new <path>
+
+This will generate a sample file, it looks like this:
+
+.. code:: lua
+   
+   set PAKG_VERSION "1.0.0"
+   set PAKG_NAME <basepath>
+
+That <basepath> thing is the basepath of the path you entered, e.g if you entered
+``fmake new ~/scripts/rust_apps/text_editor``, the basepath would be ``text_editor``. Anyways,
+say you have a file in this project called ``text_editor.rs`` and we want to build this file
+into an executable, you can run:
 
 .. code:: lua
 
-   rust-build main.rs main
+   rust-build text_editor.rs text_editor
 
 I'm not going to go *too* far into the low level interface of M4, but this is how your code expands
 in the M4 compiled file.
   
 ::
 
-   _rust_build(`main', `main.rs')
+   _rust_build(`text_editor', `text_editor.rs')
 
 And *that* expands to *this* in shell language:
 
 .. code:: bash
 
-   rustc -o main main.rs
+   rustc -o text_editor text_editor.rs
 
 Comments in FMake start with ``--``:
   

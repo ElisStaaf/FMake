@@ -5,10 +5,10 @@ I got tired of redoing my test enviroment all of the time.
 
 Instructions
 ------------
-To build, run the ``gentest.sh`` script:
+To build a test, just generate it using ``fmake new``:
 
 .. code:: sh
 
-   ./gentest.sh <dir> <files> ...
+   fmake new <path>
 
 Yeah, enjoy the test enviroment!

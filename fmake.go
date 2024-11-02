@@ -10,10 +10,11 @@
  * comes to my needs and dependency on macros.
  *
  * usage: fmake [-S] [--help, -h] [-v, --version]
- * flags:
+ * flags/commands:
  *     -h, --help: Show help screen
  *     -v, --version: Print version number.
  *     -S: Don't delete tmp files.
+ *     new: Generate new project
  * author: Elis Staaf
  * license: Apache-2.0
  */
@@ -24,13 +25,14 @@ import (
 	"fmake/utils"
 	"fmt"
 	"os"
+    "os/exec"
 	"strings"
 )
 
 var version string = "NET/1"
 var usage = `
-usage: fmake [-S] [-h, --help] [-v, --version]
-flags:
+usage: fmake [-S] [-h, --help] [-v, --version] <cmd> [args]
+flags/commands:
     -h, --help: Show this help screen.
     -v, --version: Print version number.
     -S: Save all tmp files.
@@ -42,7 +44,6 @@ func main() {
 
     if err != nil {
         utils.Die("[ERROR]: Error getting files in current working directory.")
-        os.Exit(1)
     }
 
     for _, file := range cwd {
@@ -51,9 +52,26 @@ func main() {
         }
     }
 
-    /* Pre compile-time flags. */
+    /* Pre compile-time flags/commands. */
     if len(os.Args) >= 2 {
         switch os.Args[1] {
+            case "new":
+                if len(os.Args) < 3 {
+                    utils.Die("[ERROR]: Path must be supplied after command \"new\".")
+                }
+            cmd := exec.Command("sh", utils.PackagePath() + "/gen.sh", os.Args[2])
+            out, err := cmd.Output()
+            if err != nil {
+                utils.Die("[ERROR]: Error calling file " + utils.PackagePath() + "/gen.sh.")
+            }
+            /* If output of command contains "[ERROR]",
+             * the script would've returned an error. */
+            if strings.Contains(string(out), "[ERROR]") {
+                utils.Die(string(out))
+            }
+            utils.Note(string(out))
+            cmd.Run()
+            os.Exit(0)
             case "--help", "-h":
                 fmt.Println(usage)
                 os.Exit(0)
@@ -65,7 +83,6 @@ func main() {
 
     if len(fmake.Name) == 0 {
         utils.Die("[ERROR]: Couldn't find an FMakefile in current directory.")
-        os.Exit(1)
     }
 
     if len(os.Args) == 1 {
@@ -77,7 +94,7 @@ func main() {
         os.Exit(0)
     }
 
-    /* Compile-time flags. */
+    /* Compile-time flags/commands. */
     switch os.Args[1] {
         case "-S":
             fmake.Compile()
@@ -86,6 +103,5 @@ func main() {
             os.Exit(0)
         default:
             utils.Die("[ERROR]: Invalid flag")
-            os.Exit(1)
     }
 }

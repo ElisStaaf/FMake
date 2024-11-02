@@ -9,7 +9,9 @@ fi
 mkdir "$WORKDIR"
 
 echo "[INFO]: Generating $WORKDIR/FMakefile"
-echo "-- FMakefile [$HOSTTYPE]" >> "$WORKDIR/FMakefile"
+echo "set PAKG_VERSION \"1.0.0\"" >> "$WORKDIR/FMakefile"
+echo "set PAKG_NAME $(basename "$WORKDIR")" >> "$WORKDIR/FMakefile"
+echo "println \"\$PAKG_NAME -- Version \$PAKG_VERSION\"" >> "$WORKDIR/FMakefile"
 
 for param in $@; do
     if [ $param == $1 ]; then
@@ -19,4 +21,4 @@ for param in $@; do
     touch "$WORKDIR/$param"
 done
 
-echo "[INFO]: Test generation was a success!"
+echo "[INFO]: Project generation was a success!"

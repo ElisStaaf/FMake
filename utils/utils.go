@@ -46,9 +46,9 @@ func WriteLines(path string, lines []string) (error) {
 
 /*** Misc ***/
 
-/* We need this packagePath()
+/* We need this PackagePath()
  * function to call the m4 files. */
-func packagePath() string {
+func PackagePath() string {
     _, b, _, _ := runtime.Caller(0)
     basepath := filepath.Dir(b)
     splitpath := strings.Split(basepath, "/")
@@ -59,12 +59,11 @@ func packagePath() string {
 
 func Note(msg string) {
     color.RGB(0, 255, 0).Println(msg)
-    os.Exit(0)
 }
 
 func Die(msg string) {
     color.RGB(255, 0, 0).Println(msg)
-    os.Exit(0)
+    os.Exit(1)
 }
 
 /*** FMakeObject ***/
@@ -160,7 +159,7 @@ func (fmake *FMakeObject) Compile() {
 
 func (fmake *FMakeObject) Run() {
     WriteLines("tmp.m4", fmake.body)
-    out, err := exec.Command("m4", packagePath() + "/m4/build.m4", "tmp.m4").Output()
+    out, err := exec.Command("m4", PackagePath() + "/m4/build.m4", "tmp.m4").Output()
     if err != nil {
         Die("[ERROR]: M4 compilation failed.")
     }
