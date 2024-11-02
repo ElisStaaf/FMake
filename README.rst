@@ -56,7 +56,7 @@ This will generate an initial FMakefile, it looks like this:
 
 .. code:: lua
 
-   require "NET/1"
+   require <version>
    set PAKG_VERSION "1.0.0"
    set PAKG_NAME <basepath>
    println "$PAKG_NAME -- version $PAKG_VERSION"
