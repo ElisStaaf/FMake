@@ -12,6 +12,9 @@ import (
 	"github.com/fatih/color"
 )
 
+/*** Macros ***/
+var VERSION string = "NET/1"
+
 /*** File I/O ***/
 
 func ReadLines(path string) ([]string, error) {
@@ -150,6 +153,10 @@ func (fmake *FMakeObject) Compile() {
                 fmake.AddRule("_gpp_build", fmake.Nodes(1, 2))
             case "println":
                 fmake.AddRule("_println", fmake.Cmdn(1))
+            case "require":
+                if fmake.nodelist[1] != VERSION {
+                   Die("[ERROR]: Your FMake version doesn't meet the minimum requirements.")
+                }
             default:
                 Die("[ERROR]: FMakefile syntax error.")
         }

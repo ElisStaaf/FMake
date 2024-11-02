@@ -29,7 +29,6 @@ import (
 	"strings"
 )
 
-var version string = "NET/1"
 var usage = `
 usage: fmake [-S] [-h, --help] [-v, --version] <cmd> [args]
 flags/commands:
@@ -59,7 +58,7 @@ func main() {
                 if len(os.Args) < 3 {
                     utils.Die("[ERROR]: Path must be supplied after command \"new\".")
                 }
-            cmd := exec.Command("sh", utils.PackagePath() + "/gen.sh", os.Args[2])
+            cmd := exec.Command("sh", utils.PackagePath() + "/gen.sh", os.Args[2], utils.VERSION)
             out, err := cmd.Output()
             if err != nil {
                 utils.Die("[ERROR]: Error calling file " + utils.PackagePath() + "/gen.sh.")
@@ -76,7 +75,7 @@ func main() {
                 fmt.Println(usage)
                 os.Exit(0)
             case "--version", "-v":
-                fmt.Println("FMake", version, os.Getenv("HOSTTYPE"))
+                fmt.Println("FMake", utils.VERSION, os.Getenv("HOSTTYPE"))
                 os.Exit(0)
         }
     }
