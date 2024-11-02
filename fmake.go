@@ -14,7 +14,6 @@
  *     -h, --help: Show help screen
  *     -v, --version: Print version number.
  *     -S: Don't delete tmp files.
- *     new: Generate new project
  * author: Elis Staaf
  * license: Apache-2.0
  */
@@ -31,7 +30,7 @@ import (
 
 var usage = `
 usage: fmake [-S] [-h, --help] [-v, --version] <cmd> [args]
-flags/commands:
+flags:
     -h, --help: Show this help screen.
     -v, --version: Print version number.
     -S: Save all tmp files.
