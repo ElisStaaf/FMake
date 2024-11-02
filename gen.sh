@@ -2,11 +2,9 @@
 
 WORKDIR=$1
 
-if [ -d $WORKDIR ]; then
-    exit "[ERROR]: Directory \"$WORKDIR\" already exists!"
+if [ ! -d $WORKDIR ]; then
+    mkdir "$WORKDIR"
 fi
-
-mkdir "$WORKDIR"
 
 echo "[INFO]: Generating $WORKDIR/FMakefile"
 echo "require \"$2\"" >> "$WORKDIR/FMakefile"

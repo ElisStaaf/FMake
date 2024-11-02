@@ -57,19 +57,15 @@ func main() {
                 if len(os.Args) < 3 {
                     utils.Die("[ERROR]: Path must be supplied after command \"new\".")
                 }
-            cmd := exec.Command("sh", utils.PackagePath() + "/gen.sh", os.Args[2], utils.VERSION)
-            out, err := cmd.Output()
-            if err != nil {
-                utils.Die("[ERROR]: Error calling file " + utils.PackagePath() + "/gen.sh.")
-            }
-            /* If output of command contains "[ERROR]",
-             * the script would've returned an error. */
-            if strings.Contains(string(out), "[ERROR]") {
-                utils.Die(string(out))
-            }
-            utils.Note(string(out))
-            cmd.Run()
-            os.Exit(0)
+                _, err := os.Stat(os.Args[2])
+                cmd := exec.Command("sh", utils.PackagePath() + "/gen.sh", os.Args[2], utils.VERSION)
+                out, err := cmd.Output()
+                if err != nil {
+                    utils.Die("[ERROR]: Error calling file " + utils.PackagePath() + "/gen.sh.")
+                }
+                utils.Note(string(out))
+                cmd.Run()
+                os.Exit(0)
             case "--help", "-h":
                 fmt.Println(usage)
                 os.Exit(0)
