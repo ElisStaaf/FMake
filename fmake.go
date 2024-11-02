@@ -1,3 +1,23 @@
+/* ==================== FMAKE ====================
+ * FMake is a build system, kind of like GNU Make,
+ * but... Worse, in every single way. Or... I guess
+ * not? They're just... Very different. FMake is a
+ * build system written in Go and compiles to... M4??
+ * It compiles to Shell script right after, so why
+ * bother? Well, my friend; M4 is a macro processor,
+ * Shell script is not. Hell, Shell script doesn't
+ * even have macros! So M4 is more powerful when it
+ * comes to my needs and dependency on macros.
+ *
+ * usage: fmake [-S] [--help, -h] [-v, --version]
+ * flags:
+ *     -h, --help: Show help screen
+ *     -v, --version: Print version number.
+ *     -S: Don't delete tmp files.
+ * author: Elis Staaf
+ * license: Apache-2.0
+ */
+
 package main
 
 import (
