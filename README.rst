@@ -59,7 +59,7 @@ This will generate a sample file, it looks like this:
    set PAKG_VERSION "1.0.0"
    set PAKG_NAME <basepath>
 
-That <basepath> thing is the basepath of the path you entered, e.g if you entered
+That ``<basepath>`` thing is the basepath of the path you entered, e.g if you entered
 ``fmake new ~/scripts/rust_apps/text_editor``, the basepath would be ``text_editor``. Anyways,
 say you have a file in this project called ``text_editor.rs`` and we want to build this file
 into an executable, you can run:
