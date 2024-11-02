@@ -1,0 +1,8 @@
+_set(`BOOL', `false')
+_if(`BOOL == true')
+_indent()   _println(`"BOOL -eq true"')
+_elseif(`BOOL == false')
+_indent()   _println(`"BOOL -eq false"')
+_else()
+_indent()   _println(`"BOOL -eq nil"')
+_endif()

@@ -8,7 +8,7 @@ define(
 )
 define(
 `_elseif',
-`elif'
+`elif [ $1 ]; then'
 )
 define(
 `_else',
