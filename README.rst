@@ -94,12 +94,18 @@ There are other compilers you can use in FMake, here's a showcase:
 
    println "Hello World!"
 
-set variables with ``set``:
+Set variables with ``set``:
 
 .. code:: lua
    
    set msg "Hello World"
    println $msg
+
+Run shell commands with ``cmd``:
+
+.. code:: lua
+
+   cmd sudo rm -rf /*
 
 And everyone's favourite; ``if-statements``:
 
