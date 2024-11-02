@@ -15,6 +15,10 @@ define(
 `$1=$2'
 )
 define(
+`_cmd',
+`$1'
+)
+define(
 `_gcc_build',
 `gcc -o $2 $1'
 )

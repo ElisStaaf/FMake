@@ -129,6 +129,8 @@ func (fmake *FMakeObject) Compile() {
             case "endif":
                 fmake.inif = false
                 fmake.AddRule("_endif", nil)
+            case "cmd":
+                fmake.AddRule("_cmd", fmake.Cmdn(1))
             case "set":
                 fmake.AddRule("_set", fmake.Cmdd(fmake.nodelist[1], fmake.Cmdn(2)))
             case "gcc-build":

@@ -1,2 +1,3 @@
 set msg "Hello World!"
 println "$msg"
+cmd echo "bird is the word" > "bird.txt"
