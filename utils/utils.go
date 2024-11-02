@@ -2,13 +2,14 @@ package utils
 
 import (
 	"bufio"
+	"fmt"
 	"os"
-    "strings"
-    "os/exec"
-    "path/filepath"
-    "runtime"
+	"os/exec"
+	"path/filepath"
+	"runtime"
+	"strings"
 
-    "github.com/fatih/color"
+	"github.com/fatih/color"
 )
 
 /*** File I/O ***/
@@ -154,5 +155,10 @@ func (fmake *FMakeObject) Run() {
         Die("[ERROR]: M4 compilation failed.")
     }
     WriteLines("tmp.sh", strings.Split(string(out), "\n"))
+    out2, err2 := exec.Command("sh", "tmp.sh").Output()
+    if err2 != nil {
+        Die("[ERROR]: Shell invocation failed.")
+    }
+    fmt.Println(string(out2))
     exec.Command("sh", "tmp.sh").Run()
 }
