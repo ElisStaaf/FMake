@@ -33,7 +33,7 @@ To install, firstly, clone the git repo:
   # gh
   gh repo clone ElisStaaf/FMake ~/fmake
 
-Then, you would build an executable using ``make`` or ``docker``:
+Then, you would build an executable using ``make``, ``docker`` or ``fmake``:
 
 .. code:: sh
 
@@ -42,6 +42,10 @@ Then, you would build an executable using ``make`` or ``docker``:
 
    # Docker
    docker build fmake
+
+   # FMake
+   sudo fmake
+   
 
 Introduction to the FMakefile
 -----------------------------

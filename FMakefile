@@ -1,0 +1,15 @@
+set PAKG_VERSION "NET/1"
+set PAKG_NAME "FMake"
+println "$PAKG_NAME -- version $PAKG_VERSION"
+
+if "$EUID" -ne 0
+println "[ERROR]: This FMakefile requires root"
+println "permissions, run \"sudo fmake\" instead."
+cmd exit
+endif
+
+if -f "/usr/bin/go"
+go-build fmake.go /usr/bin/fmake
+else
+println "[ERROR]: Build failed. Go is not installed."
+endif
