@@ -13,7 +13,7 @@ import (
 )
 
 /*** Macros ***/
-var VERSION string = "NET/1"
+var VERSION string = "NET/1.1"
 
 /*** File I/O ***/
 
