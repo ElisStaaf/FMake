@@ -83,7 +83,7 @@ Then you can build your app with:
 This will compile your FMakefile to a specific version of M4, compile that to shell script and run
 said shell script file. This would output:
 
-.. code:: sh
+::
 
    text_editor -- version 1.0.0
    
@@ -136,7 +136,7 @@ Check for a minimum required version with ``require``:
 
 .. code:: lua
 
-   require NET/1
+   require <version>
 
 Set variables with ``set``:
 
