@@ -143,7 +143,7 @@ Set variables with ``set``:
 .. code:: lua
    
    set msg "Hello World"
-   println $msg
+   println "$msg"
 
 Run shell commands with ``cmd``:
 
