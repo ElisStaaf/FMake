@@ -3,7 +3,7 @@ set PAKG_NAME "FMake"
 println "$PAKG_NAME -- version $PAKG_VERSION"
 
 if "$EUID" -ne 0
-println "[ERROR]: This FMakefile requires root"
+println -e "\e[31;1m[ERROR]: This FMakefile requires root"
 println "permissions, run \"sudo fmake\" instead."
 cmd exit
 endif
@@ -11,5 +11,5 @@ endif
 if -f "/usr/bin/go"
 go-build fmake.go /usr/bin/fmake
 else
-println "[ERROR]: Build failed. Go is not installed."
+println -e "\e[31;1m[ERROR]: Build failed. Go is not installed."
 endif
