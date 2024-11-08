@@ -72,7 +72,7 @@ into an executable, you can add this to the FMakefile:
 
 .. code:: lua
 
-   rust-build text_editor.rs text_editor
+   rust text_editor.rs text_editor
 
 Then you can build your app with:
 
@@ -113,16 +113,16 @@ There are other compilers you can use in FMake, here's a showcase:
 .. code:: lua
 
    -- This is the rust compiler, the one I showed earlier:
-   rust-build main.rs main
+   rust main.rs main
 
    -- This is the GCC compiler:
-   gcc-build main.c main
+   gcc main.c main
 
    -- This is the G++ compiler:
-   g++-build main.cpp main
+   g++ main.cpp main
 
    -- And this is the Go compiler:
-   go-build main.go main
+   go main.go main
 
 ``println`` statements also exist:
 
