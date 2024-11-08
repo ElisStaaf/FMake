@@ -143,14 +143,16 @@ func (fmake *FMakeObject) Compile() {
                 fmake.AddRule("_cmd", fmake.Cmdn(1))
             case "set":
                 fmake.AddRule("_set", fmake.Cmdd(fmake.nodelist[1], fmake.Cmdn(2)))
-            case "gcc-build":
+            case "gcc":
                 fmake.AddRule("_gcc_build", fmake.Nodes(1, 2))
-            case "rust-build":
+            case "rust":
                 fmake.AddRule("_rust_build", fmake.Nodes(1, 2))
-            case "go-build":
+            case "go":
                 fmake.AddRule("_go_build", fmake.Nodes(1, 2))
-            case "g++-build":
+            case "g++":
                 fmake.AddRule("_gpp_build", fmake.Nodes(1, 2))
+            case "csc":
+                fmake.AddRule("_csc_build", fmake.Nodes(1, 2))
             case "println":
                 fmake.AddRule("_println", fmake.Cmdn(1))
             case "require":

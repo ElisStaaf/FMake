@@ -43,6 +43,10 @@ define(
 `g++ -o $2 $1'
 )
 define(
+`_csc_build',
+`csc /out:$2 $1'
+)
+define(
 `_println',
 `echo $1'
 )
