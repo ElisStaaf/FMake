@@ -75,7 +75,7 @@ type FMakeObject struct {
     Name     string;
     body     []string;
     nodelist []string;
-    inif     bool;
+    indent     bool;
 }
 
 /* This is a low level interface, refer to FMakeObject.AddRule() for 
@@ -88,7 +88,7 @@ func (fmake *FMakeObject) BuildRule(name string, params []string) string {
 }
 
 func (fmake *FMakeObject) AddRule(name string, params []string) {
-    if fmake.inif {
+    if fmake.indent {
         fmake.body = append(fmake.body, "_indent()   " + fmake.BuildRule(name, params))
         return
     }
@@ -127,17 +127,17 @@ func (fmake *FMakeObject) Compile() {
         switch strings.ToLower(startnode) {
             case "if":
                 fmake.AddRule("_if", fmake.Cmdn(1))
-                fmake.inif = true
+                fmake.indent = true
             case "elseif":
-                fmake.inif = false
+                fmake.indent = false
                 fmake.AddRule("_elseif", fmake.Cmdn(1))
-                fmake.inif = true
+                fmake.indent = true
             case "else":
-                fmake.inif = false
+                fmake.indent = false
                 fmake.AddRule("_else", nil)
-                fmake.inif = true
+                fmake.indent = true
             case "endif":
-                fmake.inif = false
+                fmake.indent = false
                 fmake.AddRule("_endif", nil)
             case "cmd":
                 fmake.AddRule("_cmd", fmake.Cmdn(1))
