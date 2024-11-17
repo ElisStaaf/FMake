@@ -26,6 +26,7 @@ import (
 	"os"
     "os/exec"
 	"strings"
+    "runtime"
 )
 
 var usage = `
@@ -37,6 +38,9 @@ flags:
 `
 
 func main() {
+    if strings.HasPrefix(runtime.GOOS, "windows") {
+        utils.Die("[ERROR]: FMake is not available on Windows.")
+    }
     var fmake utils.FMakeObject 
     cwd, err := os.ReadDir("./")
 
