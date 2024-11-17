@@ -72,10 +72,10 @@ func Die(msg string) {
 /*** FMakeObject ***/
 
 type FMakeObject struct {
-    Name string;
-    body []string;
+    Name     string;
+    body     []string;
     nodelist []string;
-    inif bool;
+    inif     bool;
 }
 
 /* This is a low level interface, refer to FMakeObject.AddRule() for 
