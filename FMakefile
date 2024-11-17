@@ -1,4 +1,4 @@
-set PAKG_VERSION "NET/1"
+set PAKG_VERSION "NET/1.1"
 set PAKG_NAME "FMake"
 println "$PAKG_NAME -- version $PAKG_VERSION"
 
