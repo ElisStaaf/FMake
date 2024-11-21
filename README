@@ -1,11 +1,13 @@
 FMake: Build software for idiots
 ================================
+
 FMake is build software focused on working. Unlike other build software this one doesn't work half of the
 time. It also (right now at least) doesn't include anything special. You can only... Build stuff and print
 stuff.
 
 Requirements
 ------------
+
 * https://go.dev/doc/install
 * https://www.gnu.org/software/make or https://docs.docker.com/engine/install
 * https://www.linuxfromscratch.org/museum/lfs-museum/2.3.7/LFS-BOOK-2.3.7-HTML/x2018.html
@@ -13,6 +15,7 @@ Requirements
 
 Install
 -------
+
 To install, firstly, clone the git repo:
 
    # git
@@ -35,6 +38,7 @@ Then, you would build an executable using ``make``, ``docker`` or ``fmake``:
 
 Introduction to the FMakefile
 -----------------------------
+
 The ``FMakeFile`` is a layer of abstraction, so that you don't have to compile with M4,
 the FMake compiler does that for you. To start a new FMake project; you can run:
 
