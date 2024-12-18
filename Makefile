@@ -1,7 +1,7 @@
 .PHONY: install remove
 
 SRC="fmake.go"
-BIN="/usr/bin/fmake"
+BIN="/usr/local/bin/fmake"
 
 all: install
 
